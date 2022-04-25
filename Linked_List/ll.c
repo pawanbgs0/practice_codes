@@ -1,50 +1,32 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "ll.h"
 
-typedef struct st
+Node* create_node(int value)
 {
-    int data;
-    struct st* next;
-}node;
+    Node* temp;
 
-node* create_node(int value)
-{
-    node *temp;
-
-    temp = (node*)malloc(sizeof(node));
+    temp = (Node*)malloc(sizeof(Node));
     temp->data = value;
     temp->next = NULL;
 
     return temp;
 }
 
-void append(node* head, int value)
+
+void append(Node** head, int value)
 {
-    node* temp;
+    Node* temp = create_node(value);
+    Node* current = *head;
 
-    temp = create_node(value);
-
-    if (head == NULL)
-        head = temp;
-
+    if (*head == NULL)
+    {
+        *head = temp;
+    }
     
-    if (head->next == NULL)
+    while (current->next != NULL)
     {
-        head->next = temp;
+        current = current->next;
     }
 
-    if (head->next->next == NULL)
-    {
-        head->next->next = temp;
-    }
+    current->next = temp;
 }
 
-
-
-int main()
-{
-    node* head = NULL;
-
-    append(head, 5);
-    return 0;
-}

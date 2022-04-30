@@ -20,6 +20,7 @@ void append(Node** head, int value)
     if (*head == NULL)
     {
         *head = temp;
+        return;
     }
     
     while (current->next != NULL)
@@ -30,3 +31,13 @@ void append(Node** head, int value)
     current->next = temp;
 }
 
+
+void traverse(Node* pthead)
+{
+    while (pthead != NULL)
+    {
+        printf("%d ", pthead->data);
+        pthead = pthead->next;
+    }
+    printf("\n");
+}

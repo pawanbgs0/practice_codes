@@ -4,18 +4,17 @@
 
 //Program to Store Data in Structures Dynamically
 
-
-typedef struct
-{
-    int marks;
-    char grade;
-}info;
-
-
 int main()
 {
-    char str[] = "Pawan", str2[] = "Avinash", str3[] = "Kumar";
+    int val = 15;
+    int *pt;
 
-    printf("The length of Pawan is %ld\n" ,strlen(str));
+    pt = &val;
+
+    printf("1. %d \n", *pt);
+
+    *pt = 20;
+
+    printf("2. %d \n", *pt);
     return 0;
 }

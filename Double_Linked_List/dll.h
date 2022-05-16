@@ -13,3 +13,7 @@ void add_end(Node** head, Node** tail, int value);
 void add_begin(Node** head, Node** tail, int value);
 void traverse_next(Node* head);
 void traverse_prev(Node* tail);
+void delete_end(Node** tail);
+void delete_begin(Node** head);
+Node* search_by_pos(Node* head, int position);
+void add_in_between_after(Node* pos, int value);

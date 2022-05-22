@@ -92,6 +92,7 @@ void delete_begin(Node** head)
 Node* search_by_pos(Node* head, int position)
 {
     int i = 1, count = 1;
+    Node* temp = head;
 
     if (head == NULL)
         return NULL;
@@ -107,6 +108,8 @@ Node* search_by_pos(Node* head, int position)
         head = head->next;
         count++;
     }
+
+    head = temp;
 
     if (position > count)
     {
@@ -130,6 +133,7 @@ void add_in_between_after(Node* pos, int value)
 
     temp->prev = pos;
     temp->next = pos->next;
-    pos->next->prev = temp;
+    if (pos->next != NULL)
+        pos->next->prev = temp;
     pos->next = temp;
 }

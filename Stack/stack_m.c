@@ -3,18 +3,26 @@
 int main()
 {
     Stack bucket;
+    int usize;
 
-    int bsize;
     printf("Enter the size of bucket: ");
-    scanf("%d", &bsize);
-    bucket.size = bsize;
+    scanf("%d", &usize);
 
+    init(&bucket, usize);
+    push(&bucket, 10);
+    push(&bucket, 20);
+    push(&bucket, 30);
+    push(&bucket, 40);
 
-    init(bucket);
-    // bucket.arr = (int*)malloc(5 * sizeof(int));
-    // bucket.tos = -1;
-    push(bucket, 5);
-    printf("%d\n", peek(bucket));
+    // printf("%d\t", peek(&bucket));
+    // pop(&bucket);
+    // printf("%d\t", peek(&bucket));
+    // pop(&bucket);
+    // printf("%d\t", peek(&bucket));
+    // pop(&bucket);
+    // printf("%d\t", peek(&bucket));
+    // pop(&bucket);
+    // pop(&bucket);
 
     return 0;
 }

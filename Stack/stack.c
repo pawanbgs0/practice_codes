@@ -1,53 +1,64 @@
 #include "stack.h"
 
-void init(Stack pbucket)
+void init(Stack* bucket, int usize)
 {
-    pbucket.arr = (int*)malloc(pbucket.size * sizeof(int));
-    pbucket.tos = -1;
+    bucket->arr = (int*)malloc(sizeof(int) * usize);
+    bucket->size = usize;
+    bucket->tos = -1;
 }
 
-int is_full(Stack bucket)
+int is_full(Stack* bucket)
 {
-    if (bucket.tos == bucket.size - 1)
-        return 1;
-    else 
-        return 0;
-}
-
-int is_empty(Stack bucket)
-{
-    if (bucket.tos == -1)
+    if (bucket->tos == bucket->size - 1)
         return 1;
     else
         return 0;
 }
 
-void push(Stack bucket, int value)
+int is_empty(Stack* bucket)
 {
-    if (is_full(bucket) == 1)
+    if (bucket->tos == -1)
+        return 1;
+    else
+        return 0;
+}
+
+void push(Stack* bucket, int value)
+{
+    if (is_full(bucket))
+    {
+        printf("Stack Overflow");
         return;
-
-    bucket.tos = bucket.tos + 1;
-    bucket.arr[bucket.tos] = value;
-}
-
-int pop(Stack bucket)
-{
-    int ans;
-
-    if (is_empty(bucket) == 1)
-        return -9999;
+    }
+        
     
-    ans = bucket.arr[bucket.tos];
-    bucket.tos = bucket.tos - 1;
-
-    return ans;
+    bucket->tos++;
+    bucket->arr[bucket->tos] = value;
 }
 
-int peek(Stack bucket)
+int pop(Stack* bucket)
 {
-    if (is_empty(bucket) == 1)
-        return -99999;
+    int temp;
 
-    return bucket.arr[bucket.tos];
+    if (is_empty(bucket))
+    {
+        printf("Stack is underflow");
+        return -999;
+    }
+
+    temp = bucket->arr[bucket->tos];
+    bucket->tos--;
+
+    return temp;
+}
+
+int peek(Stack* bucket)
+{
+    if (is_empty(bucket))
+    {
+        printf("Bucket is Empty");
+        return -999;
+    }
+
+    return bucket->arr[bucket->tos];
 }

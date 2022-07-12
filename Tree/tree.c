@@ -1,55 +1,5 @@
 #include "tree.h"
 
-
-void init(queue *Q, int size)
-{
-    Q->size = size;
-    Q->front = Q->rear = -1;
-    Q->arr = (ITEM *)malloc(sizeof(ITEM) * size);
-}
-
-int isEmpty(queue *Q)
-{
-    return (Q->front == -1) || (Q->front == Q->rear + 1);
-}
-
-int isFull(queue *Q)
-{
-    return (Q->front == 0 && Q->rear == Q->size-1 || Q->rear+1 == Q->front);
-}
-
-int enqueue(queue *Q, ITEM data)
-{
-    if(isFull(Q))
-        return 0;
-    if(Q->front == -1)
-        Q->front = 0;
-    if(Q->rear == Q->size-1)
-        Q->rear = -1;
-    Q->arr[++(Q->rear)] = data;
-    return 1;
-}
-
-void display(queue *Q)
-{
-    while(Q->front <= Q->rear)
-    {
-        printf("%d ", Q->arr[Q->front]);
-        Q->front++;
-    }
-    printf("\n");
-}
-
-ITEM dequeue(queue *Q)
-{
-    if(isEmpty(Q))
-        return NULL;
-    return Q->arr[Q->front++];
-}
-
-
-
-
 void init_tree(Node** root)
 {
     (*root)->left = NULL;
@@ -103,25 +53,41 @@ void postorder(Node* root)
 }
 
 
-void levelorder(Node* root)
-{
-    queue line;
-    Node* temp;
+// void levelorder(Node* root)
+// {
+//     queue line;
+//     Node* temp;
 
-    init(&line, 7);
+//     init(&line, 7);
 
-    enqueue(&line, root);
+//     enqueue(&line, root);
 
-    while (!isEmpty(&line))
-    {
-        temp = dequeue(&line);
+//     while (!isEmpty(&line))
+//     {
+//         temp = dequeue(&line);
 
-        if (temp->left != NULL)
-            enqueue(&line, temp->left);
+//         if (temp->left != NULL)
+//             enqueue(&line, temp->left);
         
-        if (temp->right != NULL)
-            enqueue(&line, temp->right);
+//         if (temp->right != NULL)
+//             enqueue(&line, temp->right);
 
-        printf("%d ", temp->data);
+//         printf("%d ", temp->data);
+//     }
+// }
+
+
+void add_bst(Node **root, item value)
+{
+    if ((*root) == NULL)
+    {
+        *root = create_node(value);
+        return;
     }
+
+    if (value < (*root)->data)
+        add_bst(&(*root)->left, value);
+    
+    if (value > (*root)->data)
+        add_bst(&(*root)->right, value);
 }

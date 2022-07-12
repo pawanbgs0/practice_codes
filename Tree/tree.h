@@ -19,19 +19,5 @@ void preorder(Node* root);
 void inorder(Node* root);
 void postorder(Node* root);
 void levelorder(Node* root);
-
-
-
-
-typedef struct queue
-{
-    ITEM *arr;
-    int rear, front, size;
-}queue;
-
-void init(queue *, int);
-int isEmpty(queue *);
-int isFull(queue *);
-int enqueue(queue *, ITEM);
-void display(queue *);
-ITEM dequeue(queue *);
+void bst(Node** root, item value);
+void add_bst(Node **root, item value);

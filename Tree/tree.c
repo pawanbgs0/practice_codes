@@ -113,6 +113,19 @@ int depth(Node* root)
     return maxi(left, right);
 }
 
+void left_rotation(Node** root)
+{
+    Node* temp;
+
+    if (*root == NULL || (*root)->right == NULL)
+        return;
+    
+    temp = (*root)->right->left;
+    (*root)->right->left = *root;
+    *root = (*root)->right;
+    (*root)->left->right = temp;
+}
+
 
 void right_rotation(Node** root)
 {
@@ -125,4 +138,57 @@ void right_rotation(Node** root)
     (*root)->left->right = *root;
     *root = (*root)->left;
     (*root)->right->left = temp;
+}
+
+void calc_bfactor(Node** root)
+{
+    if (*root == NULL)
+        return;
+    
+    (*root)->bfactor = depth((*root)->left) - depth((*root)->right);
+}
+
+void balance_node(Node** root)
+{
+    if (*root == NULL)
+        return;
+    
+    calc_bfactor(root);
+
+    if ((*root)->bfactor > 1)
+    {
+        if ((*root)->left->bfactor < 0)
+            left_rotation(&(*root)->left);
+
+        right_rotation(root);
+    }
+
+    else if ((*root)->bfactor < -1)
+    {
+        if ((*root)->right->bfactor > 0)
+            right_rotation(&(*root)->right);
+
+        left_rotation(root);
+    }
+
+    else 
+        return;
+}
+
+
+void insert_AVL(Node** root, int value)
+{
+    if (*root == NULL)
+    {
+        *root = create_node(value);
+        return;
+    }
+
+    if (value < (*root)->data)
+        insert_AVL(&(*root)->left, value);
+
+    if (value > (*root)->data)
+        insert_AVL(&(*root)->right, value);
+
+    balance_node(root);
 }

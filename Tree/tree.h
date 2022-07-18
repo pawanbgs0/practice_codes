@@ -9,6 +9,7 @@ typedef struct st
     item data;
     struct st* left;
     struct st* right;
+    int bfactor;
 }Node;
 
 #define ITEM Node*
@@ -24,3 +25,7 @@ void add_bst(Node **root, item value);
 int max(int a, int b);
 int depth(Node* root);
 void right_rotation(Node** root);
+void left_rotation(Node** root);
+void calc_bfactor(Node** root);
+void balance_node(Node** root);
+void insert_AVL(Node** root, int value);

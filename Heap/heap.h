@@ -14,3 +14,4 @@ void swap(item* a, item* b);
 void init(Heap *hp, int size);
 void add_max_heap(Heap *hp, item value);
 void display(Heap hp);
+item remove_max_heap(Heap* hp);

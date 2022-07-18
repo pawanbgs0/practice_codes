@@ -46,3 +46,40 @@ void display(Heap hp)
     }
     printf("\n");
 }
+
+
+item remove_max_heap(Heap* hp)
+{
+    int res;
+    int parent, child;
+
+    if (hp->rear == -1)
+        return -999;
+
+    res = hp->arr[0];
+    hp->arr[0] = hp->arr[hp->rear];
+    hp->rear--;
+
+    parent = 0;
+
+    do 
+    {
+        child = 2 * parent + 1;
+        
+        if (child > hp->rear)
+            break;
+
+        if (child < hp->rear && hp->arr[child] < hp->arr[child + 1])
+            child++;
+
+        if (hp->arr[parent] < hp->arr[child])
+        {
+            swap_item(&(hp->arr[parent]), &(hp->arr[child]));
+            parent = child;
+        }
+        
+        else 
+            break;
+    }while (child <= hp->rear);
+    return res;
+}

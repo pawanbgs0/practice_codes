@@ -91,3 +91,38 @@ void add_bst(Node **root, item value)
     if (value > (*root)->data)
         add_bst(&(*root)->right, value);
 }
+
+int maxi(int a, int b)
+{
+    if (a > b)
+        return a;
+    
+    return b;
+}
+
+int depth(Node* root)
+{
+    int left, right;
+
+    if (root == NULL)
+        return 0;
+    
+    left = 1 + depth(root->left);
+    right = 1 + depth(root->right);
+
+    return maxi(left, right);
+}
+
+
+void right_rotation(Node** root)
+{
+    Node* temp;
+
+    if (*root == NULL || (*root)->left == NULL)
+        return;
+
+    temp = (*root)->left->right;
+    (*root)->left->right = *root;
+    *root = (*root)->left;
+    (*root)->right->left = temp;
+}

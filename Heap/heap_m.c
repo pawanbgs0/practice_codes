@@ -13,7 +13,15 @@ int main()
     add_max_heap(&h1, 78);
     add_max_heap(&h1, 96);
     add_max_heap(&h1, 14);
-
-    display(h1);
+    
+    printf("The deleted items are; ");
+    printf("%d ", remove_max_heap(&h1));
+    printf("%d ", remove_max_heap(&h1));
+    printf("%d ", remove_max_heap(&h1));
+    printf("%d ", remove_max_heap(&h1));
+    printf("%d ", remove_max_heap(&h1));
+    printf("%d ", remove_max_heap(&h1));
+    printf("%d ", remove_max_heap(&h1));
+    // display(h1);
     return 0;
 }

@@ -21,3 +21,6 @@ void postorder(Node* root);
 void levelorder(Node* root);
 void bst(Node** root, item value);
 void add_bst(Node **root, item value);
+int max(int a, int b);
+int depth(Node* root);
+void right_rotation(Node** root);
